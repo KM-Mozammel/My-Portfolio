@@ -2,10 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 
 const AboutMe: React.FC = () => (
-    <div className="mx-auto max-w-7xl px-4 max-w-7xl mx-auto">
+    <div className="mx-auto max-w-7xl px-4">
         <span className="block text-5xl text-center mb-6">About Me</span>
         <section className="text-lg bg-[var(--background-color)] text-[var(--text-color)] flex flex-col items-center justify-center rounded-md py-6 md:flex-row lg:flex-row">
-            <div className="w-full flex justify-center mb-6">
+            {/* Image always on top for mobile, left for desktop */}
+            <div className="w-full flex justify-center mb-6 md:w-1/2 md:mb-0 md:justify-end">
                 <Image
                     src="/img/mk.jpg"
                     alt="Mozammel Khandakar"
@@ -15,7 +16,8 @@ const AboutMe: React.FC = () => (
                     priority
                 />
             </div>
-            <div className="w-full max-w-2xl text-center">
+            {/* Text always centered, full width on mobile, half on desktop */}
+            <div className="w-full max-w-2xl text-center md:w-1/2 md:text-left md:pl-8">
                 <p>
                     Hi, I’m Mozammel Khandakar — a passionate Software Developer with a strong foundation in Computer Engineering and over 12 years of programming experience, starting from C and web technologies to modern full-stack development.
                 </p>
