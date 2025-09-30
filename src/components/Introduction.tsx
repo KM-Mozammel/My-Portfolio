@@ -15,7 +15,7 @@ export default function Introduction() {
         >
             <div className="py-15 lg:w-1/2">
                 <span className="text-5xl font-bold">
-                    Hi, I'm <span className="text-blue-500/100">Mozammel</span> a <span className="text-blue-500/100">passionate</span> software developer.
+                    Hi, I{"'"}m <span className="text-blue-500/100">Mozammel</span> a <span className="text-blue-500/100">passionate</span> software developer.
                 </span>
                 <div className="flex flex-row items-center justify-content-center mt-2">
                     <div className="w-1 h-7 bg-green-400 mr-1 mt-1" />

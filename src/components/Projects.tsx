@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 
 type Project = {
     id: number;
@@ -58,7 +59,7 @@ const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({
                 >
                     &lt;
                 </button>
-                <img
+                <Image
                     src={project.images[currentImg]}
                     alt={project.title}
                     className="w-64 h-40 object-cover rounded-md"
@@ -123,7 +124,7 @@ const Projects: React.FC = () => {
             {projects.map((project, idx) => (
                 <div
                     key={project.id}
-                    ref={(el) => (cardsRef.current[idx] = el)}
+                    ref={(el) => {cardsRef.current[idx] = el; }}
                 >
                     <ProjectCard
                         project={project}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect, use } from "react";
+import React, { useRef, useState } from "react";
 
 interface AudioPlayerProps {
     src: string;
