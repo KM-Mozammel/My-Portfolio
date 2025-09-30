@@ -11,6 +11,7 @@
 - **Primary Color**: #3498db (a vibrant blue for buttons and highlights)
 - **Secondary Color**: #2ecc71 (a fresh green for accents)
 - **Background Color**: #ffffff (white for a clean background)
+- **Background Color Dark**: rgb(35 35 50 / var(--tw-bg-opacity, 1)) (white for a clean background)
 - **Text Color**: #333333 (dark gray for readability)
 
 ## Typography

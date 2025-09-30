@@ -1,10 +1,7 @@
-import Image from "next/image";
+import RootLayout from "./root-layout";
 
 export default function Home() {
-
-  alert("Hello World!!");
-
   return (
-    <h3>Hello World!!</h3>
+    <RootLayout />
   );
 }
