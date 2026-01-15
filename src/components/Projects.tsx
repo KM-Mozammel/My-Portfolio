@@ -14,26 +14,20 @@ const projects: Project[] = [
         id: 1,
         title: "Gotaste",
         images: ["/img/gotaste.png", "/img/gotaste2.png"],
-        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js using Redux for state management. It allows users to browse restaurants, view their menus, and explore food items categorized by sections. The backend is developed with Onion Architecture, stored procedures, and dependency injection, while the frontend provides a clean, responsive interface for seamless restaurant and food item exploration.",
+        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js."
     },
     {
         id: 2,
         title: "Gotaste",
         images: ["/img/gotaste2.png", "/img/gotaste.png"],
-        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js using Redux for state management. It allows users to browse restaurants, view their menus, and explore food items categorized by sections. The backend is developed with Onion Architecture, stored procedures, and dependency injection, while the frontend provides a clean, responsive interface for seamless restaurant and food item exploration.",
+        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js."
     },
     {
         id: 3,
         title: "Gotaste",
         images: ["/img/gotaste.png", "/img/gotaste2.png"],
-        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js using Redux for state management. It allows users to browse restaurants, view their menus, and explore food items categorized by sections. The backend is developed with Onion Architecture, stored procedures, and dependency injection, while the frontend provides a clean, responsive interface for seamless restaurant and food item exploration.",
-    },
-    {
-        id: 4,
-        title: "Gotaste",
-        images: ["/img/gotaste2.png", "/img/gotaste.png"],
-        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js using Redux for state management. It allows users to browse restaurants, view their menus, and explore food items categorized by sections. The backend is developed with Onion Architecture, stored procedures, and dependency injection, while the frontend provides a clean, responsive interface for seamless restaurant and food item exploration.",
-    },
+        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js."
+    }
 ];
 
 const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({
@@ -50,32 +44,33 @@ const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({
     return (
         <div
             className={`transition-opacity duration-700 ${fadeIn ? "opacity-100" : "opacity-0"
-                } bg-[var(--background-color)] text-[var(--text-color)] rounded-lg shadow-lg p-6 flex flex-col items-center mb-8`}
+                } bg-[var(--background-color)] text-[var(--text-color)] rounded-lg shadow-lg lg:w-70 sm:w-full`}
+            style={{ backgroundColor: 'rgba(17, 27, 59, 0.84)' }}
         >
-            <div className="relative w-full flex items-center justify-center mb-4">
-                <button
+            <div className="relative flex">
+                {/* <button
                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200 text-gray-700 rounded-full p-2 hover:bg-gray-300"
                     onClick={prevImg}
                 >
                     &lt;
-                </button>
-                <Image
+                </button> */}
+                <img
                     src={project.images[currentImg]}
                     alt={project.title}
-                    className="w-64 h-40 object-cover rounded-md"
+                    className="w-100 h-40 object-cover rounded-sm"
                 />
-                <button
+                {/* <button
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200 text-gray-700 rounded-full p-2 hover:bg-gray-300"
                     onClick={nextImg}
                 >
                     &gt;
-                </button>
+                </button> */}
             </div>
-            <div className="w-full text-center">
+            <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-base">{project.description}</p>
+                <p className="text-base" style={{ color: 'dark-gray' }}>{project.description}</p>
                 <a target="_blank" href="https://gotaste.uk/" className="mt-4 inline-block">
-                    <button className="hover:cursor-pointer hover:text-red-500/100">Golive</button>
+                    <button className="hover:cursor-pointer hover:text-red-500/100 px-2" style={{ border: '1px solid white' }}>Golive</button>
                 </a>
             </div>
         </div>
@@ -87,6 +82,11 @@ const Projects: React.FC = () => {
     const [visible, setVisible] = useState<boolean[]>(
         Array(projects.length).fill(false)
     );
+    const [innerWidth, setInnerWidth] = useState(0);
+
+    useEffect(() => {
+        setInnerWidth(window.innerWidth);
+    }, [])
 
     useEffect(() => {
         const isDesktop = window.innerWidth >= 768;
@@ -120,18 +120,35 @@ const Projects: React.FC = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-8 max-w-7xl mx-auto">
-            {projects.map((project, idx) => (
-                <div
-                    key={project.id}
-                    ref={(el) => {cardsRef.current[idx] = el; }}
-                >
-                    <ProjectCard
-                        project={project}
-                        fadeIn={visible[idx]}
-                    />
-                </div>
-            ))}
+        <div style={{
+            transition: "background-color 0.3s, color 0.3s",
+            width: "100%",
+            padding: innerWidth > 500 ? "var(--padding-lg)" : "var(--padding-sm)",
+            borderBottom: "1px solid rgba(170, 160, 160, 0.41)",
+            color: 'white',
+            backgroundColor: 'rgb(9, 25, 43)'
+        }}>
+            <span
+                className="block text-2xl text-bold pb-2 mb-2 font-bold"
+                style={{ borderBottom: "1px solid rgb(52, 109, 173)", maxWidth: 'fit-content' }}
+            >Featured Projects</span>
+            <p>Some of my best work.</p>
+
+            <div
+                className="flex flex-row space-between flex-wrap gap-4 py-4"
+            >
+                {projects.map((project, idx) => (
+                    <div
+                        key={project.id}
+                        ref={(el) => { cardsRef.current[idx] = el; }}
+                    >
+                        <ProjectCard
+                            project={project}
+                            fadeIn={visible[idx]}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
