@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const services = [
-    "build React-native apps for Android/iOS",
-    "convert design into modern UI",
-    "build interactive UI using React",
-    "develop websites using Next.js",
+    "Full-Stack Engineer API.NET Core, React, SQL Server",
+    "Building scalable web applications",
+    "Modern software architecture, Exploring AI",
 ];
 
 function getRandomIndex(exclude: number, length: number): number {
@@ -21,7 +20,7 @@ const ServicesAnimation: React.FC = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIdx((prev) => getRandomIndex(prev, services.length));
-        }, 2000);
+        }, 3500);
         return () => clearInterval(interval);
     }, []);
 
@@ -30,10 +29,10 @@ const ServicesAnimation: React.FC = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "80px"
+            height: "60px"
         }}>
             <span style={{
-                fontSize: "1.5rem",
+                fontSize: "1rem",
                 fontWeight: 500,
                 transition: "opacity 0.5s",
                 opacity: 1,

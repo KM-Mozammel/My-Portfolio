@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
+import "../app/globals.css";
 
 // Simple SVG icons (replace with your preferred icon library if desired)
 const LinkedInIcon = () => (
@@ -28,6 +29,11 @@ export default function Navbar() {
     const [fadeIn, setFadeIn] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
     const [scrolling, setScrolling] = useState(false);
+    const [innerWidth, setInnerWidth] = useState(0);
+
+    useEffect(() => {
+        setInnerWidth(window.innerWidth);
+    }, []);
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
@@ -66,33 +72,26 @@ export default function Navbar() {
     return (
         <div
             style={{
-                backgroundColor: scrolling ? "rgba(117, 102, 102, 0.86)" : "var(--background-color)",
-                color: scrolling ? "rgba(255, 255, 255, 1)" : "var(--text-color)",
                 transition: "background-color 0.3s, color 0.3s",
-                position: scrolling ? "fixed" : "fixed",
-                width: "100%"
+                width: "100%",
+                padding: innerWidth > 500 ? "var(--padding-lg)" : "var(--padding-sm)",
+                borderBottom: "1px solid rgba(170, 160, 160, 0.41)",
             }}
         >
             <div
                 ref={navRef}
-                className={`max-w-7xl mx-auto grid grid-cols-3 items-center gap-4 py-2 px-4 relative transition-opacity duration-700 ${fadeIn ? "opacity-100" : "opacity-0"}`}
+                className={`flex justify-between items-center items-center gap-4 relative transition-opacity duration-700 ${fadeIn ? "opacity-100" : "opacity-0"} flex `}
             >
-                {/* Left: Logo/Name */}
-                <div className="justify-self-start font-bold text-lg">
-                    @Mozammel
-                </div>
-
                 {/* Center: Navigation Links or Hamburger */}
                 <div className="flex justify-center">
                     {/* Desktop/Tablet: show links */}
                     <div className="hidden md:flex space-x-4 [&>a]:relative [&>a]:inline-block [&>a]:after:content-[''] [&>a]:after:absolute [&>a]:after:left-0 [&>a]:after:bottom-0 [&>a]:after:h-[2px] [&>a]:after:w-0 [&>a]:after:bg-black [&>a]:after:transition-all [&>a]:after:duration-200 [&>a:hover]:after:w-full">
-                        <a href="#home">Home</a>
+                        <a href="#about">Home</a>
                         <a href="#about">About</a>
-                        <a href="#skills">Skills</a>
                         <a href="#projects">Projects</a>
+                        <a href="#skills">Blog</a>
                         <a href="#contact">Contact</a>
                     </div>
-
 
                     {/* Mobile: show hamburger */}
                     <div className="md:hidden">
@@ -111,47 +110,51 @@ export default function Navbar() {
 
                         {/* Dropdown menu */}
                         {menuOpen && (
-                            <div className="absolute left-0 right-0 top-14 bg-[var(--background-color)] shadow-md rounded px-4 py-2 flex flex-col space-y-2 z-50">
+                            <div className="absolute left-0 right-0 top-14 bg-gray-800 text-white shadow-md rounded px-4 py-2 flex flex-col space-y-2 z-50">
                                 <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
                                 <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-                                <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
                                 <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+                                <a href="#skills" onClick={() => setMenuOpen(false)}>Blog</a>
                                 <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+                                {/* Icons */}
+                                <div className="flex justify space-x-3">
+                                    <button
+                                        onClick={() => setDark((prev) => !prev)}
+                                        aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+                                    >
+                                        {dark ? <SunIcon /> : <MoonIcon />}
+                                    </button>
+                                    <a
+                                        href="https://linkedin.com"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="LinkedIn"
+                                    >
+                                        <LinkedInIcon />
+                                    </a>
+                                    <a
+                                        href="https://github.com"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="GitHub"
+                                    >
+                                        <GithubIcon />
+                                    </a>
+                                    <a
+                                        href="mailto:mozammel.khandakar@outlook.com"
+                                        aria-label="Mail"
+                                    >
+                                        <MailIcon />
+                                    </a>
+                                </div>
                             </div>
                         )}
                     </div>
                 </div>
 
                 {/* Right: Icon Buttons */}
-                <div className="flex justify-end space-x-2">
-                    <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn"
-                    >
-                        <LinkedInIcon />
-                    </a>
-                    <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub"
-                    >
-                        <GithubIcon />
-                    </a>
-                    <a
-                        href="mailto:mozammel.khandakar@outlook.com"
-                        aria-label="Mail"
-                    >
-                        <MailIcon />
-                    </a>
-                    <button
-                        onClick={() => setDark((prev) => !prev)}
-                        aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-                    >
-                        {dark ? <SunIcon /> : <MoonIcon />}
-                    </button>
+                <div>
+                    <button className="border-1 px-4 py-1 rounded">Resume</button>
                 </div>
             </div>
         </div>
