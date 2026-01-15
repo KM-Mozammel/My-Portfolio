@@ -18,7 +18,7 @@ export default function AboutMe() {
             >About Me</span>
             <span>Turning Ideas Into Reality</span>
 
-            <p style={{ color: 'gray', paddingTop: '10px' }}>Over the years, I've built real-world systems using C, PHP, JavaScript, Python, and C#.</p>
+            <p style={{ color: 'gray', paddingTop: '10px' }}>Over the years, I&apos;mve built real-world systems using C, PHP, JavaScript, Python, and C#.</p>
 
             <div
                 className="about-me-overview-container"
