@@ -9,10 +9,16 @@ import AudioPlayer from "@/components/AudioPlayer";
 import Projects from "@/components/Projects";
 import { url } from "inspector";
 import BlogAndInsights from "@/components/BlogAndInsights";
+import { useResumeStore } from "./store/useResumeStore";
+import Resume from "@/components/Resume";
 
 export default function RootLayout() {
+    const show = useResumeStore((state) => state.show);
     return (
-        <div className="RootLayout">
+        <div className="RootLayout relative">
+            {show &&
+                <Resume />
+            }
             <SEO
                 title="Mozammel | Portfolio"
                 description="Full Stack Developer portfolio website"
@@ -28,10 +34,10 @@ export default function RootLayout() {
             <BlogAndInsights />
             {/* <AudioPlayer src="/mp3/song.mp3" name="Lalon Song"/> */}
             {/* <Footer /> */}
-            
+
             {/* Floating Call Button */}
-            <a 
-                href="tel:+8801795593541" 
+            <a
+                href="tel:+8801795593541"
                 className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg flex items-center justify-center z-40 transition-all duration-300 hover:scale-110"
                 title="Call +8801795593541"
             >

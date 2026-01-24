@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import "../app/globals.css";
+import Resume from "./Resume";
+import { useResumeStore } from "@/app/store/useResumeStore";
 
 // Simple SVG icons (replace with your preferred icon library if desired)
 const LinkedInIcon = () => (
@@ -30,6 +32,8 @@ export default function Navbar() {
     const navRef = useRef<HTMLDivElement>(null);
     const [scrolling, setScrolling] = useState(false);
     const [innerWidth, setInnerWidth] = useState(0);
+    const showResume = useResumeStore((state) => state.show);
+    const setShowResume = useResumeStore((state) => state.setShow);
 
     useEffect(() => {
         setInnerWidth(window.innerWidth);
@@ -68,6 +72,10 @@ export default function Navbar() {
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const ShowResume = () => {
+        setShowResume(!showResume);
+    }
 
     return (
         <div
@@ -153,8 +161,8 @@ export default function Navbar() {
                 </div>
 
                 {/* Right: Icon Buttons */}
-                <div>
-                    <button className="border-1 px-4 py-1 rounded">Resume</button>
+                <div onClick={ShowResume}>
+                    <button className="border-1 px-4 py-1 rounded cursor-pointer">Resume</button>
                 </div>
             </div>
         </div>

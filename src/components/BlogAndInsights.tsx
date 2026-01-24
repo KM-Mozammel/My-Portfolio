@@ -68,7 +68,7 @@ const BlogAndInsights = () => {
                         <div className="p-4 space-y-3">
                             {/* Heading */}
                             <h3 className="text-lg font-semibold text-gray-900">
-                                India&apos;ms microprocessor
+                                India&apos;s microprocessor
                             </h3>
 
                             {/* Description */}
@@ -93,7 +93,7 @@ const BlogAndInsights = () => {
             </div>
             <div className='lg:w-1/2 sm:w-full background-blue-500'>
                 <span className="text-2xl font-bold border-b-1 pb-2">Get In Touch</span>
-                <p className='pt-4 pb-2'>Let&apos;ms work together</p>
+                <p className='pt-4 pb-2'>Let&apos;s work together</p>
                 <form className="flex flex-col gap-4">
                     <input
                         type="text"
