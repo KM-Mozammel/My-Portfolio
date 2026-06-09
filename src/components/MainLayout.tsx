@@ -1,4 +1,3 @@
-import FooterSection from "./BlogsInsights";
 import Resume from "./Resume";
 import SEO from "./SEO";
 import CallButton from "./FloatingCallButton";

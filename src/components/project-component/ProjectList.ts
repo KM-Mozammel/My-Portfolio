@@ -1,7 +1,7 @@
 import type { Project } from "./ProjectType";
 
 export async function getProjects(): Promise<Project[]> {
-    const res = await fetch("http://localhost:3000/api/admin/projects", {
+    const res = await fetch("/api/admin/projects", {
         cache: "no-store",
     });
 

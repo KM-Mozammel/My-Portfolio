@@ -2,7 +2,7 @@ import ProjectForm from "../create/project-form";
 
 async function getProject(id: string) {
     const res = await fetch(
-        `http://localhost:3000/api/admin/projects/${id}`,
+        `/api/admin/projects/${id}`,
         {
             cache: "no-store",
         }
