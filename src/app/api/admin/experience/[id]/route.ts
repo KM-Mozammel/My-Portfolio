@@ -1,23 +1,27 @@
 import { db } from "@/db";
 import { experience } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  _: Request,
-  { params }: { params: { id: string } }
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   const data = await db
     .select()
     .from(experience)
-    .where(eq(experience.id, params.id));
+    .where(eq(experience.id, id));
 
-  return Response.json(data[0] ?? null);
+  return NextResponse.json(data[0] ?? null);
 }
 
 export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const body = await req.json();
 
   await db
@@ -30,16 +34,18 @@ export async function PUT(
       endDate: body.endDate,
       description: body.description,
     })
-    .where(eq(experience.id, params.id));
+    .where(eq(experience.id, id));
 
-  return Response.json({ success: true });
+  return NextResponse.json({ success: true });
 }
 
 export async function DELETE(
-  _: Request,
-  { params }: { params: { id: string } }
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  await db.delete(experience).where(eq(experience.id, params.id));
+  const { id } = await params;
 
-  return Response.json({ success: true });
+  await db.delete(experience).where(eq(experience.id, id));
+
+  return NextResponse.json({ success: true });
 }
