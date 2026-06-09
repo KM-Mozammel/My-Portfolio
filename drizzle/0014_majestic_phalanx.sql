@@ -1,0 +1,1 @@
+ALTER TABLE "heroSections" RENAME TO "hero_sections";
