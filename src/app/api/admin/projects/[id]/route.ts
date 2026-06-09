@@ -1,12 +1,13 @@
 import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  context: { params: Promise<{ id: string }> }
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await context.params;
+  const { id } = await params;
 
   const project = await db
     .select()
@@ -14,37 +15,14 @@ export async function GET(
     .where(eq(projects.id, id))
     .limit(1);
 
-  return Response.json(project[0] ?? null);
+  return NextResponse.json(project[0] ?? null);
 }
 
-// export async function PUT(req: Request, { params }: any) {
-//   const body = await req.json();
-
-//   await db
-//     .update(projects)
-//     .set({
-//       title: body.title,
-//       slug: body.slug,
-//       shortDescription: body.shortDescription,
-//       fullDescription: body.fullDescription,
-//       thumbnail: body.thumbnail,
-//       githubUrl: body.githubUrl,
-//       liveUrl: body.liveUrl,
-//       featured: body.featured,
-//       status: body.status,
-//       displayOrder: body.displayOrder,
-//       updatedAt: new Date(),
-//     })
-//     .where(eq(projects.id, params.id));
-
-//   return Response.json({ success: true });
-// }
-
 export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const body = await req.json();
 
   const updateData: any = {};
@@ -60,16 +38,16 @@ export async function PUT(
 
   await db.update(projects).set(updateData).where(eq(projects.id, id));
 
-  return Response.json({ success: true });
+  return NextResponse.json({ success: true });
 }
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   await db.delete(projects).where(eq(projects.id, id));
 
-  return Response.json({ success: true });
+  return NextResponse.json({ success: true });
 }
