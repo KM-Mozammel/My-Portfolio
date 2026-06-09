@@ -1,60 +1,205 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleLogin() {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      setLoading(true);
+      setError("");
 
-    const data = await res.json();
-    if (data.token) {
-      document.cookie = `token=${data.token}; path=/`;
-      window.location.href = "/admin";
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.token) {
+        document.cookie = `token=${data.token}; path=/`;
+
+        router.push("/admin");
+        return;
+      }
+
+      setError(
+        data.message ||
+        "Invalid email or password."
+      );
+    } catch {
+      setError(
+        "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   }
 
+  const inputStyle = {
+    background: "var(--section-bg)",
+    border: "1px solid var(--border-color)",
+    color: "var(--text-color)",
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Admin Login
-        </h1>
-
-        <div className="flex flex-col gap-4">
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            type="email"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <button
-            onClick={handleLogin}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors"
+    <div
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{
+        background:
+          "var(--background-color)",
+      }}
+    >
+      <div className="w-full max-w-md">
+        {/* LOGO / TITLE */}
+        <div className="text-center mb-8">
+          <h1
+            className="text-5xl font-bold mb-3"
+            style={{
+              background:
+                "var(--hero-gradient)",
+              WebkitBackgroundClip:
+                "text",
+              WebkitTextFillColor:
+                "transparent",
+            }}
           >
-            Login
-          </button>
+            Admin Login
+          </h1>
+
+          <p
+            style={{
+              color:
+                "var(--text-muted)",
+            }}
+          >
+            Sign in to manage your
+            portfolio dashboard.
+          </p>
         </div>
 
-        <p className="text-sm text-gray-500 text-center mt-6">
-          © {new Date().getFullYear()} Mozammel Portfolio
-        </p>
+        {/* LOGIN CARD */}
+        <div
+          className="rounded-2xl p-8"
+          style={{
+            background:
+              "var(--card-bg)",
+            border:
+              "1px solid var(--border-color)",
+            boxShadow:
+              "var(--shadow-glow)",
+          }}
+        >
+          <div className="space-y-5">
+            {/* EMAIL */}
+            <div>
+              <label className="block mb-2 font-medium">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                value={email}
+                onChange={(e) =>
+                  setEmail(
+                    e.target.value
+                  )
+                }
+                placeholder="admin@example.com"
+                className="w-full p-3 rounded-xl outline-none"
+                style={inputStyle}
+              />
+            </div>
+
+            {/* PASSWORD */}
+            <div>
+              <label className="block mb-2 font-medium">
+                Password
+              </label>
+
+              <input
+                type="password"
+                value={password}
+                onChange={(e) =>
+                  setPassword(
+                    e.target.value
+                  )
+                }
+                placeholder="Enter password"
+                className="w-full p-3 rounded-xl outline-none"
+                style={inputStyle}
+                onKeyDown={(e) => {
+                  if (
+                    e.key ===
+                    "Enter"
+                  ) {
+                    handleLogin();
+                  }
+                }}
+              />
+            </div>
+
+            {/* ERROR */}
+            {error && (
+              <div
+                className="p-3 rounded-xl text-sm"
+                style={{
+                  background:
+                    "rgba(239,68,68,0.15)",
+                  color: "#ef4444",
+                  border:
+                    "1px solid rgba(239,68,68,0.3)",
+                }}
+              >
+                {error}
+              </div>
+            )}
+
+            {/* LOGIN BUTTON */}
+            <button
+              onClick={handleLogin}
+              disabled={loading}
+              className="w-full py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] disabled:opacity-50"
+              style={{
+                background:
+                  "var(--hero-gradient)",
+                color: "#fff",
+                boxShadow:
+                  "var(--shadow-glow)",
+              }}
+            >
+              {loading
+                ? "Signing In..."
+                : "Login"}
+            </button>
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <div
+          className="text-center mt-6 text-sm"
+          style={{
+            color:
+              "var(--text-muted)",
+          }}
+        >
+          © {new Date().getFullYear()} Mozammel
+          Portfolio
+        </div>
       </div>
     </div>
   );
