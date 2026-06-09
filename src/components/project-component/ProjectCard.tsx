@@ -43,7 +43,12 @@ const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({ project,
 
             <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-base" style={{ color: 'dark-gray' }}>{project.description}</p>
+                {/* <p className="text-base" style={{ color: 'dark-gray' }}>{project.description}</p> */}
+                <p className="text-base text-gray-200">
+                    {project.description.length > 80
+                        ? project.description.substring(0, 80) + "..."
+                        : project.description}
+                </p>
 
                 <div className="flex flex-row gap-2">
                     <a target="_blank" href={project.link} className="mt-4 inline-block">

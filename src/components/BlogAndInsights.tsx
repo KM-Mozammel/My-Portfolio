@@ -33,7 +33,7 @@ const BlogAndInsights = () => {
     }, []);
 
     return (
-        <>
+        <div className="p-4 md:py-8 sm:px-20">
             <span className="text-2xl font-bold border-b-1 pb-2">
                 Blog & Insights
             </span>
@@ -87,7 +87,7 @@ const BlogAndInsights = () => {
                     ))}
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

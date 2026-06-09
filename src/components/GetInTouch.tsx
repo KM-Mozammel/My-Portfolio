@@ -41,7 +41,7 @@ export default function ContactForm() {
 
     return (
         <div
-            className="max-w-2xl mx-auto p-6 rounded-2xl space-y-4"
+            className="w-full p-4 md:py-8 sm:px-20 rounded-2xl space-y-4"
             style={{
                 background: "var(--card-bg)",
                 border: "1px solid var(--border-color)",
