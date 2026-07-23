@@ -131,7 +131,7 @@ export default function ProjectsPage() {
             <div className="p-5">
               {/* Top */}
               <div className="flex justify-between items-start gap-3">
-                <h2 className="font-bold text-lg">
+                <h2 className="font-bold text-lg text-black">
                   {project.title}
                 </h2>
 
