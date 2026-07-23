@@ -39,11 +39,11 @@ export default function Resume() {
             📞 01795593541 | ✉️ mozammel.khandakar@outlook.com
           </p>
           <p className="text-sm text-blue-600">
-            <a href="https://linkedin.com/in/mozammel-khandakar" target="_blank">
+            <a href="https://linkedin.com/in/mozammel-khandakar" target="_blank" rel="noreferrer">
               LinkedIn
             </a>{" "}
             |{" "}
-            <a href="https://github.com/KM-Mozammel" target="_blank">
+            <a href="https://github.com/KM-Mozammel" target="_blank" rel="noreferrer">
               GitHub
             </a>
           </p>
@@ -52,7 +52,7 @@ export default function Resume() {
         {/* Career Objective */}
         <Section title="Career Objective">
           <p className="text-gray-700 leading-relaxed">
-            Versatile Full-Stack Software Engineer with 1.5+ years of professional
+            Versatile Full-Stack Software Engineer with 6+ years of professional
             experience building scalable, maintainable applications. Experienced
             across C, PHP, JavaScript, Python, C#, and modern frameworks. Deeply
             interested in software architecture, mathematics, neuroscience, and
@@ -97,17 +97,27 @@ export default function Resume() {
 
         {/* Projects */}
         <Section title="Projects">
-          <ul className="list-disc pl-5 text-gray-700 space-y-2">
+          <ul className="list-disc pl-5 text-gray-700 space-y-3">
             <li>
-              <strong>GoTaste:</strong> Restaurant management system using ASP.NET
-              Core Web API, React.js, SQL Server
+              <strong>Personal Portfolio & AI Platform:</strong> Modern full-stack platform built with Next.js, TypeScript, Tailwind CSS, Drizzle ORM, PostgreSQL, and Neon. Designed to showcase projects and features AI assistant capabilities using vector embeddings and Retrieval-Augmented Generation (RAG).
             </li>
             <li>
-              <strong>eKutum:</strong> Live e-commerce store with online payments
+              <strong>GoTaste:</strong> Restaurant management web application built with ASP.NET Core Web API and React.js.
             </li>
             <li>
-              <strong>Media Management App:</strong> PHP, MySQL, MVC, Singleton
-              Pattern
+              <strong>Private Messenger:</strong> Real-time private messaging system built with React.js, ASP.NET Core Web API, Dapper, MySQL, and SignalR.
+            </li>
+            <li>
+              <strong>eKutum:</strong> Production-ready e-commerce platform featuring responsive UI, WooCommerce integration, custom PHP modules, and customized payment workflows.
+            </li>
+            <li>
+              <strong>Temple Run: Elimination:</strong> A 3D endless runner developed in Unity (C#) featuring procedural environment generation, dynamic obstacle spawning, high-velocity movement logic, and custom physics controller.
+            </li>
+            <li>
+              <strong>SCS - Security Clearance System:</strong> System focused on dynamic form building and complex role management.
+            </li>
+            <li>
+              <strong>Media Management App:</strong> Built using PHP, MySQL, MVC architecture, and Singleton pattern.
             </li>
           </ul>
         </Section>
@@ -133,16 +143,16 @@ export default function Resume() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
             <p>
               <strong>Languages & Frameworks:</strong> C, C++, C#, ASP.NET Core,
-              Java (basic), Python (LangChain, RAG), Blazor, Flutter
+              Java (basic), Python (LangChain, RAG), Blazor, Flutter, Unity (C#)
             </p>
             <p>
-              <strong>Frontend:</strong> React, Redux, TypeScript, HTML5, CSS3
+              <strong>Frontend:</strong> React, Next.js, Redux, TypeScript, HTML5, CSS3, Tailwind CSS
             </p>
             <p>
-              <strong>Databases:</strong> SQL Server, MySQL (Optimization)
+              <strong>Databases & ORM:</strong> SQL Server, MySQL, PostgreSQL, Neon, Drizzle ORM, EF Core, Dapper
             </p>
             <p>
-              <strong>Tools:</strong> Git, Docker (basic), Postman, Firebase
+              <strong>Tools & Tech:</strong> Git, Docker (basic), Postman, Firebase, SignalR, WebRTC
             </p>
           </div>
         </Section>
@@ -170,10 +180,10 @@ export default function Resume() {
 
 /* ---------- Reusable Components ---------- */
 
-function Section({ title, children }: any) {
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-6">
-      <h2 className="text-xl font-semibold border-b pb-1 mb-3">
+      <h2 className="text-xl font-semibold border-b pb-1 mb-3 text-black">
         {title}
       </h2>
       {children}
@@ -181,10 +191,10 @@ function Section({ title, children }: any) {
   )
 }
 
-function Experience({ role, time, items }: any) {
+function Experience({ role, time, items }: { role: string; time: string; items: string[] }) {
   return (
     <div className="mb-4">
-      <h3 className="font-semibold">{role}</h3>
+      <h3 className="font-semibold text-black">{role}</h3>
       <p className="text-sm text-gray-500 mb-2">{time}</p>
       <ul className="list-disc pl-5 text-gray-700 space-y-1">
         {items.map((item: string, i: number) => (

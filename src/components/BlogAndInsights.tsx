@@ -76,7 +76,8 @@ const BlogAndInsights = () => {
                                 {/* Read More */}
                                 <a
                                     target="_blank"
-                                    href={blog.canonicalUrl || `/blog/${blog.slug}`}
+                                    href="https://www.linkedin.com/in/mozammel-khandakar/"
+                                    // href={blog.canonicalUrl || `/blog/${blog.slug}`}
                                 >
                                     <button className="mt-2 inline-flex items-center text-sm font-medium text-blue-600 hover:underline">
                                         Read more →
