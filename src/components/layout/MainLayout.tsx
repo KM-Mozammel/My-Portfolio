@@ -1,7 +1,8 @@
-import Resume from "./Resume";
-import SEO from "./SEO";
-import CallButton from "./FloatingCallButton";
+import Resume from "../resume/Resume";
+import SEO from "../SEO";
+import CallButton from "../ui/FloatingCallButton";
 import Footer from "./Footer";
+import AnimatedBackground from "../ui/AnimatedBackground";
 
 export default function MainLayout({
     children,
@@ -22,6 +23,8 @@ export default function MainLayout({
             />
 
             <Resume />
+
+            <AnimatedBackground />
             {children}
         </div>
     );

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { useResumeStore } from "@/store/useResumeStore";
 import MobileNavbar from "./MobileNavbar";
+import { navItems } from "./NavItems";
 
 export default function Navbar() {
     const [dark, setDark] = useState(false);
@@ -58,15 +60,24 @@ export default function Navbar() {
         <div
             ref={navRef}
             data-scrolled={scrolling}
-            className="
-                sticky top-0 z-50 w-full
-                transition-all duration-300
-                border-b
-                bg-transparent
-                border-[var(--border-color)]
-                text-[var(--text-color)]
-                data-[scrolled=true]:backdrop-blur-sm
-            "
+            // className="
+            //     sticky top-0 z-50 w-full
+            //     transition-all duration-300
+            //     border-b
+            //     bg-transparent
+            //     border-[var(--border-color)]
+            //     text-[var(--text-color)]
+            //     data-[scrolled=true]:backdrop-blur-sm
+            // "
+            className={`
+          sticky top-0 z-50 w-full
+          transition-all duration-300
+          border-b border-white/15
+          ${scrolling
+                    ? "bg-black/10 backdrop-blur-md"
+                    : "bg-black/0 backdrop-blur-sm"
+                }
+        `}
         >
             <div
                 className={`
@@ -78,14 +89,8 @@ export default function Navbar() {
             >
                 {/* ================= CENTER NAV LINKS ================= */}
                 <div className="hidden md:flex space-x-6">
-                    {[
-                        { label: "Home", href: "#home" },
-                        { label: "About", href: "#about" },
-                        { label: "Projects", href: "#projects" },
-                        { label: "Blogs", href: "#skills" },
-                        { label: "Contact", href: "#contact" },
-                    ].map((item) => (
-                        <a
+                    {navItems.map((item) => (
+                        <Link
                             key={item.label}
                             href={item.href}
                             className="
@@ -105,7 +110,7 @@ export default function Navbar() {
                             "
                         >
                             {item.label}
-                        </a>
+                        </Link>
                     ))}
                 </div>
 

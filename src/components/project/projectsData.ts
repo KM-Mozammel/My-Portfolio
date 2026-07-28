@@ -1,0 +1,65 @@
+// projectsData.ts
+import type { Project } from "./ProjectType";
+
+export const projectsData: Project[] = [
+    {
+        id: "20fc5aed-5991-45bc-a119-d9e9f7980244",
+        title: "Gotaste",
+        description: "GoTaste is a restaurant web application built with ASP.NET Core Web API and React.js.",
+        images: ["/img/gotaste2.png", "/img/gotaste.png"],
+        githubUrl: 'github.com/KM-Mozammel',
+        link: "https://gotaste.uk/",
+        featured: false,
+        createdAt: "2026-06-09 06:55:47.154541",
+    },
+    {
+        id: "c1184c5b-9090-466e-be1e-d5991b6eff56",
+        title: "Private Messenger",
+        description: "A private messaging built with React.js and ASP.NET core web api, dapper, mysql, signalR.",
+        images: ["/img/private-messenger-1.png", "/img/private-messenger-2.png", "/img/private-messenger-3.png"],
+        githubUrl: 'github.com/KM-Mozammel',
+        link: "https://mk-private-messenger.vercel.app/",
+        featured: false,
+        createdAt: "2026-06-09 06:55:47.154541",
+    },
+    {
+        id: "fc50c7e5-01c1-4c37-a6a1-0560edf4fadc",
+        title: "eKutum.com",
+        description: "Developed and maintained a production-ready e-commerce platform featuring responsive UI, WooCommerce integration, custom PHP modules, payment workflow customization, and content management solutions.",
+        images: ["/img/ekutum.png"],
+        githubUrl: "github.com/KM-Mozammel",
+        link: "https://ekutum.com",
+        featured: false,
+        createdAt: "2026-06-01 07:01:15.747099",
+    },
+    {
+        id: "7ade0811-21db-4788-938d-12422af5764f",
+        title: "Personal Portfolio & AI Platform",
+        description: "Modern full-stack portfolio platform built with Next.js, TypeScript, Tailwind CSS, Drizzle ORM, PostgreSQL, and Neon.",
+        images: ["/img/portfolio.png"],
+        githubUrl: "https://github.com/KM-Mozammel/My-Portfolio",
+        link: "https://mozammel-portfolio.vercel.app",
+        featured: true,
+        createdAt: "2026-06-01 07:01:15.747099",
+    },
+    {
+        id: "8f99da7b-41f7-49ff-85a9-81bdad69fc23",
+        title: "SCS - Security Clearance System",
+        description: "Role Management, Dynamic Form Building.",
+        images: ["/img/scs.png"],
+        githubUrl: "https://github.com/Shakil-Shajol/SCS",
+        link: "#",
+        featured: false,
+        createdAt: "2026-07-23 11:10:39.344138",
+    },
+    {
+        id: "45de9f42-3fda-49ee-8f22-777796cccbdc",
+        title: "Temple Run: Elimination",
+        description: "An energetic 3D endless runner developed in Unity (C#), inspired by classic arcade mechanics with a competitive twist.",
+        images: ["/img/temple1.png", "/img/temple2.png", "/img/temple3.png"],
+        githubUrl: "https://github.com/KM-Mozammel/Temple-Run-2",
+        link: "https://drive.google.com/drive/folders/1aPFWQN2hc52m0oCSv9nsQ1Pu2-9SNy6D?usp=sharing",
+        featured: false,
+        createdAt: "2026-07-23 10:45:37.508718",
+    }
+];

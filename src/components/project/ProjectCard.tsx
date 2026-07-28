@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 
 const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({ project, fadeIn }) => {
     const [previewImg, setPreviewImg] = useState<string | null>(null);
+    const [showFullDesc, setShowFullDesc] = useState(false);
+    const toggleDescription = () => setShowFullDesc(!showFullDesc);
 
     return (
         <div
@@ -43,19 +45,30 @@ const ProjectCard: React.FC<{ project: Project; fadeIn: boolean }> = ({ project,
 
             <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                {/* <p className="text-base" style={{ color: 'dark-gray' }}>{project.description}</p> */}
+                {/* Description with toggle */}
                 <p className="text-base text-gray-200">
-                    {project.description.length > 80
-                        ? project.description.substring(0, 80) + "..."
-                        : project.description}
+                    {showFullDesc
+                        ? project.description
+                        : project.description.length > 80
+                            ? project.description.substring(0, 80) + "..."
+                            : project.description}
                 </p>
+
+                {project.description.length > 80 && (
+                    <button
+                        onClick={toggleDescription}
+                        className="text-blue-400 hover:text-blue-600 mt-2 text-sm"
+                    >
+                        {showFullDesc ? "Show less" : "Show more"}
+                    </button>
+                )}
 
                 <div className="flex flex-row gap-2">
                     <a target="_blank" href={project.link} className="mt-4 inline-block">
                         <button className="hover:cursor-pointer hover:text-red-500/100 px-2" style={{ border: '1px solid white' }}>Golive</button>
                     </a>
-                    <a target="_blank" href={project.link} className="mt-4 inline-block">
-                        <button className="hover:cursor-pointer hover:text-red-500/100 px-2" style={{ border: '1px solid white' }}>Show Description</button>
+                    <a target="_blank" href={project.githubUrl} className="mt-4 inline-block">
+                        <button className="hover:cursor-pointer hover:text-red-500/100 px-2" style={{ border: '1px solid white' }}>Github</button>
                     </a>
                 </div>
             </div>
