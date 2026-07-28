@@ -1,16 +1,9 @@
-import "../globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import FloatingCallButton from "@/components/FloatingCallButton";
-import PageTracker from "@/components/PageTracker";
-import Header from "@/components/Header";
-import Introduction from "@/components/Introduction";
-import AboutMe from "@/components/AboutMe";
-import Projects from "@/components/project-component/Projects";
-import MainLayout from "@/components/MainLayout";
-import FloatingMessageButton from "@/components/chat/FloatingMessageButton";
-import GetInTouch from "@/components/GetInTouch";
-import BlogAndInsights from "@/components/BlogAndInsights";
+import Navbar from "@/components/layout/navbar/Navbar";
+import Footer from "@/components/layout/Footer";
+import MainLayout from "@/components/layout/MainLayout";
+
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ClientErrorListener } from "@/components/ClientErrorListener";
 
 export default function PublicLayout({
   children,
@@ -19,19 +12,13 @@ export default function PublicLayout({
 }) {
   return (
     <MainLayout>
-      {/* 📊 Automatically tracks every visitor on public pages */}
-      {/* <PageTracker />  */}
-      <Header>
+      {/* <ClientErrorListener /> */}
+      {/* <ErrorBoundary> */}
+        {/* <PageTracker />  */}
         <Navbar />
-        <Introduction />
-      </Header>
-      <AboutMe />
-      <Projects />
-      <FloatingMessageButton />
-      <FloatingCallButton />
-      <BlogAndInsights />
-      <GetInTouch />
-      <Footer />
+        {children}
+        <Footer />
+      {/* </ErrorBoundary> */}
     </MainLayout>
   );
 }

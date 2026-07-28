@@ -1,9 +1,12 @@
 export type Project = {
-    id: number;
+    id: number | string;
     title: string;
     images: string[];
     description: string;
     link?: string;
+    githubUrl?: string;
+    featured?: boolean;
+    createdAt: string;
 };
 
 export type ImageViewerProps = {

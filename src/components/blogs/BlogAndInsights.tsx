@@ -1,29 +1,23 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-
-type Blog = {
-    id: string;
-    title: string;
-    excerpt: string | null;
-    coverImage: string | null;
-    publishedAt: string | null;
-    slug: string;
-    canonicalUrl?: string | null;
-};
+import { BlogType } from "./blogType";
+import { fallbackBlogs } from "./fallbackBlogs";
 
 const BlogAndInsights = () => {
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [blogs, setBlogs] = useState<BlogType[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
                 const res = await fetch("/api/public/blogs");
+                if (!res.ok) throw new Error("API error");
                 const data = await res.json();
                 setBlogs(data);
             } catch (err) {
-                console.error("Failed to load blogs", err);
+                console.error("Failed to load blogs, using fallback", err);
+                setBlogs(fallbackBlogs);
             } finally {
                 setLoading(false);
             }
@@ -77,7 +71,7 @@ const BlogAndInsights = () => {
                                 <a
                                     target="_blank"
                                     href="https://www.linkedin.com/in/mozammel-khandakar/"
-                                    // href={blog.canonicalUrl || `/blog/${blog.slug}`}
+                                // href={blog.canonicalUrl || `/blog/${blog.slug}`}
                                 >
                                     <button className="mt-2 inline-flex items-center text-sm font-medium text-blue-600 hover:underline">
                                         Read more →

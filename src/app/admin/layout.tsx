@@ -36,7 +36,7 @@ export default function AdminLayout({
   }, []);
 
   const navItems = [
-    { name: "Dashboard", href: "/admin/dashboard" },
+    { name: "Dashboard", href: "/admin" },
     { name: "Projects", href: "/admin/projects" },
     { name: "Skills", href: "/admin/skills" },
     { name: "Experience", href: "/admin/experience" },
