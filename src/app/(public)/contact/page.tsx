@@ -1,4 +1,4 @@
-import GetInTouch from "@/components/contact/GetInTouch";
+import GetInTouch from "@/components/public/contact/GetInTouch";
 
 export default function ContactPage() {
     return (

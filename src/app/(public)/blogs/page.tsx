@@ -1,4 +1,4 @@
-import BlogAndInsights from "@/components/blogs/BlogAndInsights";
+import BlogAndInsights from "@/components/public/blogs/BlogAndInsights";
 
 export default function BlogsPage() {
     return (

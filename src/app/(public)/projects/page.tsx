@@ -1,4 +1,4 @@
-import Projects from "@/components/project/Projects";
+import Projects from "@/components/public/project/Projects";
 export default function ProjectsPage() {
     return (
         <main className="py-20">

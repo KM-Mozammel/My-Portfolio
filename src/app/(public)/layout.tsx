@@ -1,9 +1,9 @@
-import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer";
-import MainLayout from "@/components/layout/MainLayout";
+import Navbar from "@/components/public/layout/navbar/Navbar";
+import Footer from "@/components/public/layout/Footer";
+import MainLayout from "@/components/public/layout/MainLayout";
 
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { ClientErrorListener } from "@/components/ClientErrorListener";
+import { ErrorBoundary } from "@/components/public/ErrorBoundary";
+import { ClientErrorListener } from "@/components/public/ClientErrorListener";
 
 export default function PublicLayout({
   children,
