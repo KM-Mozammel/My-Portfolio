@@ -16,7 +16,7 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
 
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("../api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type":
@@ -30,9 +30,7 @@ export default function LoginPage() {
 
       const data = await res.json();
 
-      if (data.token) {
-        document.cookie = `token=${data.token}; path=/`;
-
+      if (res.ok) {
         router.push("/admin");
         return;
       }
